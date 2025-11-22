@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 1. The document title is now "Meow" -->
+    <title>Meow</title>
+    <!-- Load Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for a better look and transition */
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f7f7f7; /* Light background */
+        }
+        /* Custom message box transition for the pop-up */
+        #meowBanner {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateY(-20px);
+        }
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md text-center">
+        
+        <!-- 2. The "Meow" banner text (a large heading) -->
+        <h1 class="text-7xl font-extrabold text-purple-600 mb-8 tracking-tight">
+            Meow! 🐈
+        </h1>
+
+        <p class="text-gray-600 mb-10 text-lg">
+            Click the button below to receive an important notification.
+        </p>
+
+        <!-- 3. The "Meow" button -->
+        <button id="meowButton"
+            class="px-8 py-3 bg-indigo-500 text-white font-bold text-xl rounded-full shadow-lg hover:bg-indigo-600 transition duration-150 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-300 active:bg-indigo-700">
+            Meow
+        </button>
+    </div>
+
+    <!-- 4. Custom Pop-up Banner (This appears instead of the alert()) -->
+    <div id="meowBanner"
+        class="fixed top-0 left-1/2 -translate-x-1/2 mt-4 opacity-0 pointer-events-none p-4 rounded-lg bg-yellow-400 text-gray-800 font-semibold shadow-xl transition-all duration-300 ease-out z-50"
+        role="alert">
+        Meow! 😸
+    </div>
+
+    <script>
+        const meowButton = document.getElementById('meowButton');
+        const meowBanner = document.getElementById('meowBanner');
+
+        // Function to display the custom 'Meow' pop-up banner
+        function showMeow() {
+            // 1. Show the banner by setting opacity and translating it into view
+            meowBanner.classList.add('visible');
+
+            // 2. Hide the banner after 2 seconds
+            setTimeout(() => {
+                meowBanner.classList.remove('visible');
+            }, 2000); // 2000 milliseconds = 2 seconds
+        }
+
+        // Attach the function to the button click event
+        meowButton.addEventListener('click', showMeow);
+    </script>
+
+</body>
+</html>
